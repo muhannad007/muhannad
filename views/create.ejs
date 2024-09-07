@@ -1,0 +1,22 @@
+<html>
+  <%- include("./partials/head.ejs") %>
+  <body>
+    <%- include("./partials/nav.ejs") %>
+
+    <div class="create-comment content">
+      <form action="/blogs" method="post">
+        <label for="title">Comment title:</label>
+        <input type="text" id="title" name="title" required />
+        <label for="body">Blog title:</label><br />
+        <textarea id="body" name="body" required></textarea><br />
+        <label for="snippet">Name</label>
+        <input type="text" id="name" name="name" required />
+        <label for="snippet">Position</label>
+        <input type="text" id="position" name="position" required />
+        <button>Submit</button>
+      </form>
+    </div>
+
+    <%- include("./partials/footer.ejs") %>
+  </body>
+</html>

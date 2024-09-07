@@ -1,0 +1,166 @@
+<html>
+  <%- include("./partials/head.ejs") %>
+  <body class="blog-body">
+    <div>
+      <div class="blog-header">
+        <h1>Welcome to my blog</h1>
+        <h3>
+          This is my social network. You will see the latest news about me.
+        </h3>
+      </div>
+      <% if (blogs.length > 0) { %> <% blogs.forEach(blog => { %>
+      <article id="article-container-1" class="article">
+        <header>
+          <!-- <button class="close button-blog" onclick="">
+            <img src="tweeter/images/close.png" height="15" width="15" />
+          </button> -->
+          <div class="avatar">
+            <img src="images/blog.png" height="40" width="40" />
+          </div>
+          <div>
+            <h2><%= blog.title %></h2>
+            <h4>- <%= blog.snippet %></h4>
+          </div>
+        </header>
+        <blockquote><%= blog.body %></blockquote>
+        <hr />
+        <footer class="blog-footer">
+          <p class="date-posted">
+            Posted:
+            <time><%= blog.createdAt %></time>
+          </p>
+          <button class="heart" onclick="toggleComments()">
+            <img
+              src="images/add-comment.png"
+              id="heart-image-1"
+              height="40"
+              width="40"
+            />
+          </button>
+        </footer>
+        <div class="comments-section" id="comments-section">
+          <% if (comments.length > 0) { comments.forEach(comment => {%> <% if
+          (comment.blog_id == blog._id) { %>
+          <div class="whole-comment">
+            <div class="comment-image">
+              <img src="images/profile.png" />
+            </div>
+            <div class="comm">
+              <div class="comment-header">
+                <h4><b><%= comment.full_name %></b></h4>
+                <span class="comment-time"><%= comment.createdAt %></span>
+              </div>
+              <h4><%= comment.comment %></h4>
+              <h5>
+                <a onclick="toggleReplies('<%= comment._id %>')">reply</a>
+              </h5>
+              <div class="reply-section" id="<%= comment._id %>">
+                <% if (replies.length > 0) { replies.forEach(reply => { if
+                (reply.comment_id == comment._id) { %>
+                <div class="replies">
+                  <h4><b><%= reply.reply_name %></b></h4>
+                  <h4><%= reply.reply %></h4>
+                </div>
+                <% }})} else { %>
+                <h4>No replies on this post</h4>
+                <% } %>
+                <form action="/blog/comment/<%= comment._id %>" method="post">
+                  <textarea
+                    class="comment"
+                    name="reply"
+                    id="comment"
+                    placeholder="Reply to this comment..."
+                  ></textarea>
+                  <div class="name-sub">
+                    <input
+                      type="text"
+                      class="comment-name"
+                      name="reply_name"
+                      id="comment-name"
+                      placeholder="Your name"
+                    />
+                    <button class="comment-button">
+                      <img
+                        src="images/comment.png"
+                        alt="comment-button"
+                        width="30"
+                        height="30"
+                      />
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+          <% } %> <%}) } else {%>
+          <h4>No comments on this blog</h4>
+          <% } %>
+          <form action="/blog/<%= blog._id %>" method="post">
+            <textarea
+              class="comment"
+              name="comment"
+              id="comment"
+              placeholder="Write your comment..."
+            ></textarea>
+            <div class="name-sub">
+              <input
+                type="text"
+                class="comment-name"
+                name="full_name"
+                id="comment-name"
+                placeholder="Your name"
+              />
+              <button class="comment-button">
+                <img
+                  src="images/comment.png"
+                  alt="comment-button"
+                  width="30"
+                  height="30"
+                />
+              </button>
+            </div>
+          </form>
+        </div>
+      </article>
+      <% }) %> <% } else { %>
+      <p>No blogs to display</p>
+      <% } %>
+    </div>
+
+    <%- include("./partials/footer.ejs") %>
+
+    <script src="js/jquery-2.1.1.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/waypoints/2.0.3/waypoints.min.js"></script>
+    <script>
+      // Main Navigation
+      $("#menu-toggle").click(function () {
+        $(this).toggleClass("open"), $(".main-nav").toggleClass("show-it");
+      });
+    </script>
+    <script>
+      var comments = document.getElementById("comments-section");
+      var comments_state = false;
+      const toggleComments = () => {
+        comments_state = !comments_state;
+        if (comments_state == true) {
+          comments.style.display = "block";
+        } else if (comments_state == false) {
+          comments.style.display = "none";
+        }
+      };
+    </script>
+
+    <script>
+      var replies_state = false;
+      const toggleReplies = (comment_id) => {
+        var replies = document.getElementById(comment_id);
+        replies_state = !replies_state;
+        if (replies_state == true) {
+          replies.style.display = "block";
+        } else if (replies_state == false) {
+          replies.style.display = "none";
+        }
+      };
+    </script>
+  </body>
+</html>
