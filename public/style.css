@@ -353,6 +353,11 @@ h1.heading.pink:after {
 }
 
 /* Main navigation */
+@media (max-width: 900px) {
+  nav {
+    display: block;
+  }
+}
 nav {
   height: 40px;
   width: 100%;
@@ -438,6 +443,9 @@ nav {
     visibility: hidden;
     transition: 0.25s all;
     float: right;
+    position: absolute;
+    right: -4em;
+    top: 4em;
   }
 }
 ul.main-nav {
