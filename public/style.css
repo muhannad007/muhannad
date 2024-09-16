@@ -41,7 +41,7 @@ img {
   color: #7447ae;
 }
 .pink {
-  color: #ff2a75;
+  color: #ff2a75 !important;
 }
 .blue {
   color: #37a7ff;
@@ -428,6 +428,18 @@ nav {
   transition-delay: 1.25s;
 }
 
+@media (max-width: 900px) {
+  .main-nav {
+    padding-right: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    opacity: 0;
+    visibility: hidden;
+    transition: 0.25s all;
+    float: right;
+  }
+}
 ul.main-nav {
   padding-right: 20px;
   display: flex;
@@ -675,6 +687,16 @@ button.close:hover {
   opacity: 1;
 }
 
+@media (max-width: 600px) {
+  .blog-footer {
+    display: flex;
+    flex-direction: column;
+  }
+  button.heart {
+    align-self: flex-start;
+  }
+}
+
 .blog-footer {
   display: flex;
   justify-content: space-between;
@@ -702,6 +724,11 @@ button.heart:hover {
   border-bottom: none;
 }
 
+@media (max-width: 800px) {
+  .comments-section form textarea {
+    width: 100%;
+  }
+}
 .comment {
   width: 60%;
   outline: none;
@@ -762,6 +789,13 @@ button.heart:hover {
   margin-bottom: 1em;
   border-radius: 0px 0px 10px 10px;
   width: 90%;
+}
+
+@media (max-width: 800px) {
+  .comment-header {
+    display: flex;
+    flex-direction: column;
+  }
 }
 
 .comment-header {
