@@ -11,6 +11,7 @@ body {
   color: #222;
   font-weight: normal;
   letter-spacing: 0.03em;
+  overflow-x: hidden;
 }
 a {
   color: #7447ae;
