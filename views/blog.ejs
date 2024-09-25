@@ -29,7 +29,7 @@
             Posted:
             <time><%= blog.createdAt %></time>
           </p>
-          <button class="heart" onclick="toggleComments()">
+          <button class="heart" onclick="toggleComments('<%= blog._id %>')">
             <img
               src="images/add-comment.png"
               id="heart-image-1"
@@ -38,7 +38,7 @@
             />
           </button>
         </footer>
-        <div class="comments-section" id="comments-section">
+        <div class="comments-section" id="<%= blog._id %>">
           <% if (comments.length > 0) { comments.forEach(comment => {%> <% if
           (comment.blog_id == blog._id) { %>
           <div class="whole-comment">
@@ -138,9 +138,9 @@
       });
     </script>
     <script>
-      var comments = document.getElementById("comments-section");
       var comments_state = false;
-      const toggleComments = () => {
+      const toggleComments = (blog_id) => {
+        var comments = document.getElementById(blog_id);
         comments_state = !comments_state;
         if (comments_state == true) {
           comments.style.display = "block";
