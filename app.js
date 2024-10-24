@@ -4,6 +4,7 @@ const routes = require("./routes/routes");
 const mongoose = require("mongoose");
 const app = express();
 const helmet = require("helmet");
+const path = require("path");
 require("dotenv").config();
 
 const { MONGO_USER, MONGO_PASSWORD, MONGO_PATH, PORT } = process.env;
