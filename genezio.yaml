@@ -1,0 +1,21 @@
+name: my-project
+region: us-east-1
+yamlVersion: 2
+
+services:
+  web:
+    type: nodejs
+    build:
+      dockerfile: Dockerfile
+      context: .
+    environment:
+      NODE_ENV: production
+      PORT: 3000
+    volumes:
+      - .:/usr/src/app
+    command: npm start
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3000"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
