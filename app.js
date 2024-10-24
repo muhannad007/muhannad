@@ -2,9 +2,9 @@ const express = require("express");
 const morgan = require("morgan");
 const routes = require("./routes/routes");
 const mongoose = require("mongoose");
-require("dotenv").config();
 const app = express();
 const helmet = require("helmet");
+require("dotenv").config();
 
 const { MONGO_USER, MONGO_PASSWORD, MONGO_PATH, PORT } = process.env;
 
@@ -20,10 +20,11 @@ const clientOptions = {
 };
 mongoose
   .connect(uri, clientOptions)
-  .then((result) => app.listen(PORT))
+  .then(() => app.listen(PORT))
   .catch((err) => console.log(err));
 
 app.use(helmet());
+app.set("views", "./views");
 app.set("view engine", "ejs");
 
 app.use(express.static("public"));
