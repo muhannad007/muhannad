@@ -1,10 +1,11 @@
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap");
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
+@tailwind utilities;
 
 @theme inline {
-  --font-sans: 'Inter', sans-serif;
-  --font-display: 'Space Grotesk', sans-serif;
+  --font-sans: "Inter", sans-serif;
+  --font-display: "Space Grotesk", sans-serif;
 
   --color-background: hsl(var(--background));
   --color-foreground: hsl(var(--foreground));
@@ -37,9 +38,15 @@
   }
 
   @keyframes float {
-    0% { transform: translateY(0px); }
-    50% { transform: translateY(-10px); }
-    100% { transform: translateY(0px); }
+    0% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+    100% {
+      transform: translateY(0px);
+    }
   }
 }
 
@@ -47,28 +54,28 @@
   /* Deep Space Dark Theme Default */
   --background: 240 50% 3%;
   --foreground: 210 40% 98%;
-  
+
   --card: 240 40% 6%;
   --card-foreground: 210 40% 98%;
-  
+
   /* Electric Cyan */
   --primary: 190 100% 50%;
   --primary-foreground: 240 60% 4%;
-  
+
   /* Deep Navy/Purple */
   --secondary: 260 50% 15%;
   --secondary-foreground: 210 40% 98%;
-  
+
   --muted: 240 30% 12%;
   --muted-foreground: 215 20% 65%;
-  
+
   /* Neon Pink/Magenta */
   --accent: 320 100% 60%;
   --accent-foreground: 210 40% 98%;
-  
+
   --destructive: 0 84% 60%;
   --destructive-foreground: 210 40% 98%;
-  
+
   --border: 240 40% 15%;
   --input: 240 40% 12%;
   --ring: 190 100% 50%;
@@ -80,7 +87,7 @@
   * {
     @apply border-border;
   }
-  
+
   html {
     scroll-behavior: smooth;
   }
@@ -91,7 +98,12 @@
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
   }
 
-  h1, h2, h3, h4, h5, h6 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     font-family: var(--font-display);
     @apply font-bold tracking-tight;
   }
@@ -116,12 +128,14 @@
   .glass-panel {
     @apply bg-card/60 backdrop-blur-xl border border-white/5 shadow-2xl shadow-black/50;
   }
-  
+
   .text-gradient {
     @apply bg-clip-text text-transparent bg-gradient-to-r from-primary via-accent to-primary bg-[length:200%_auto] animate-[gradient_4s_linear_infinite];
   }
-  
+
   @keyframes gradient {
-    to { background-position: 200% center; }
+    to {
+      background-position: 200% center;
+    }
   }
 }
